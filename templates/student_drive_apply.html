@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Drive Details</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="main">
+        <div id="canvas">
+
+        
+            <div class="container-fluid bg-light p-3 d-flex justify-content-between align-items-center">
+                <a class="navbar-brand fw-bold" href="#">Drive Details</a>
+               
+            </div>
+
+            <hr>
+
+            <div class="container">
+
+                <div class="card p-3">
+
+                    <h5>Drive {{ drive.id }}</h5>
+                    <p><strong>Job Title:</strong> {{ drive.job_title }}</p>
+                    <p><strong>Company:</strong> {{ drive.company.name }}</p>
+                    <p><strong>Description:</strong> {{ drive.job_description }}</p>
+                    <p><strong>Application Deadline:</strong> {{ drive.application_deadline }}</p>
+                    <p><strong>Eligibility Criteria:</strong> {{ drive.eligibility_criteria }}</p>
+                    <p><strong>Salary:</strong> {{ drive.salary }}</p>
+                   
+
+                    
+                  
+
+                </div>
+
+            </div>
+            <div>
+                <a href="/apply/drive/{{ drive.id }}/student/{{ student.id }}" class="btn btn-primary">Apply</a>
+                <a href="/company_details/company/{{company.id}}" class="btn btn-secondary">Go Back</a>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

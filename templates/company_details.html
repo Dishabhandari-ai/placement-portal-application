@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ company.name }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #canvas {
+            height: 1000px
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="main">
+        <div id="canvas">
+            <div class="container-fluid bg-light p-3 d-flex justify-content-between align-items-center">
+                <h1><a class="navbar-brand fw-bold" href="#">{{ company.name }}</a></h1>
+                {% if student %}
+                <a href="/student/{{ student.id }}">Home</a>
+                 </a> <a href="/logout">
+                    <p>Logout</p>
+                </a>
+                {% else %}
+                <a href="/login">Login</a>
+                {% endif %}
+               
+            </div>
+
+
+            <br>
+            <h3>Overview</h3><br>
+            <p>The name of the company is {{ company.name }}. It is a leading company in its field.</p>
+            <br>
+
+            <div>
+                <h5>
+                    Current Drives
+                </h5>
+                <div>
+                    <div class="bd-example m-0 border-0">
+                        <table class="table table-striped">
+
+                            <tbody>
+                                {% for drive in drives %}
+                                <tr>
+                                    <th scope="row">Drive {{ drive.id }}</th>
+
+                                    <td><a href="/drive_details/drive/{{ drive.id }}/company/{{ company.id }}"><button
+                                                type="button" class="btn btn-primary">View Details</button></a></td>
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+</body>
+
+</html>

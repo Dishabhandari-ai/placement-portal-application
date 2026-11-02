@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Application</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="main">
+        <div id="canvas">
+            <h1>Student Applications</h1>
+
+            {% for app in applications %}
+            <h5>Student Name: {{ app.student.name }}</h5><br>
+            <h5>Department: {{ app.student.department }}</h5><br>
+            <h5>Drive: {{ app.drive.company.name }}</h5><br>
+            <h5>Job Title: {{ app.drive.job_title }}</h5><br>
+            <h5>Status: {{ app.status }}</h5><br>
+            <h5>Resume Link: <a href="{{ app.student.resume_link }}" target="_blank">View Resume</a></h5>
+            <hr>
+            {% endfor %}
+
+            <a href="/admin"><button>Back</button></a>
+        </div>
+    </div>
+</body>
+
+</html>

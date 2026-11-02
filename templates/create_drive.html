@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Drive</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <style>
+        #canvas, #main{
+            height: 1000px;
+        }
+        #form-body{
+            height:700px;
+        }
+    </style> 
+</head>
+
+<body>
+    <div id="main">
+        <div id="canvas">
+            <div id="form-body">
+                
+                <h1>Create a Drive</h1>
+                <p style="color:red;">{{ error }}</p>
+                <form method="POST" action="/create_drive/company/{{ company.id }}">
+                    
+                    <div class="mb-3">
+                        <label for="drive_id" class="form-label">Drive ID</label>
+                        <input type="text" class="form-control" id="drive_id" name="drive_id" placeholder="Enter drive ID" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="job_title" class="form-label">Job Title</label>
+                        <input type="text" class="form-control" id="job_title" name="job_title" placeholder="Enter job title" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="job_description" class="form-label">Job Description</label>
+                        <input type="text" class="form-control" id="job_description" name="job_description" placeholder="Enter job description" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="eligibility" class="form-label">Eligibility Criteria</label>
+                        <input type="text" class="form-control" id="eligibility" name="eligibility" placeholder="Enter eligibility criteria" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="deadline" class="form-label">Application Deadline</label>
+                        <input type="date" class="form-control" id="deadline" name="deadline" placeholder="Enter application deadline" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="salary" class="form-label">Salary</label>
+                        <input type="text" class="form-control" id="salary" name="salary" placeholder="Enter salary" required>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary" value="Save">Save</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

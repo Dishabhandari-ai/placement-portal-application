@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Drive</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        #form-body {
+            height: 540px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div id="canvas">
+            <div id="form-body">
+                <h1>Update the Drive</h1>
+
+               
+                <form method="POST" action="/update_drive/drive/{{ drive.id }}">
+
+                    <div class="mb-3">
+                        <label for="job_title" class="form-label">Job Title</label>
+                        <input type="text" class="form-control" id="job_title" name="job_title"
+                            value="{{ drive.job_title }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="job_description" class="form-label">Job Description</label>
+                        <input type="text" class="form-control" id="job_description" name="job_description"
+                            value="{{ drive.job_description }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="eligibility_criteria" class="form-label">Eligibility Criteria</label>
+                        <input type="text" class="form-control" id="eligibility_criteria" name="eligibility_criteria"
+                            value="{{ drive.eligibility_criteria }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="application_deadline" class="form-label">Application Deadline</label>
+                        <input type="text" class="form-control" id="application_deadline" name="application_deadline"
+                            value="{{ drive.application_deadline }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="salary" class="form-label">Salary</label>
+                        <input type="text" class="form-control" id="salary" name="salary"
+                            value="{{ drive.salary }}">
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+
+                </form>
+               
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

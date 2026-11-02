@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Panel</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+</head>
+
+<body>
+
+    <div id="main">
+        <div id="canvas">
+            <div class="container-fluid bg-light p-3 d-flex justify-content-between align-items-center">
+                <a class="navbar-brand fw-bold" href="#">Welcome {{student.name}}!</a>
+
+                <form method="GET" action="/student_search">
+                    <input type="text" name="query" placeholder="Search jobs or companies" required>
+                    <button type="submit">Search</button>
+                </form>
+
+                <a href="/edit_profile/student/{{ student.id }}">
+                    <p>Edit Profile</p>
+                </a>|<a href="/student_app_history/student/{{ student.id }}">
+                    <p>History</p>
+                </a>|<a href="/logout">
+                    <p>Logout</p>
+                </a>
+            </div>
+
+            <hr>
+            <div>
+                <h5>Organizations</h5>
+                <div>
+                    <div class="bd-example m-0 border-0">
+                        <table class="table table-striped">
+
+                            <tbody>
+                                {% for c in companies %}
+                                    {% if not c.is_blacklisted and c.is_approved %}
+                                        <tr>
+                                            <th scope="row">{{ c.name }}</th>
+                                            <td><a href="/company_details/company/{{ c.id }}"><button type="button"
+                                                        class="btn btn-primary">View details</button></td></a>
+
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+
+
+
+
+
+            <div>
+                <h5>Applied Drives</h5>
+                <div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Sr No.</th>
+                                <th scope="col">Drive Name</th>
+                                <th scope="col">Company</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Completed</th>
+                                <th scope="col">Actions</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for app in student.applications %}
+                            {% if app.drive.company.is_blacklisted == False %}
+
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ app.drive.job_title }}</td>
+                                <td>{{ app.drive.company.name }}</td>
+                                <td>{{ app.application_date }}</td>
+                                <td>
+                                    {% if app.status == 'shortlist' %}
+                                    <span class="text-success">Shortlisted</span>
+                                    {% elif app.status == 'reject' %}
+                                    <span class="text-danger">Rejected</span>
+                                    {% elif app.status == 'waiting' %}
+                                    <span class="text-warning">Waiting</span>
+                                    {% else %}
+                                    <span class="text-secondary">{{ app.status }}</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{app.drive.is_completed}}</td>
+                                <td>
+                                    <a
+                                        href="/drive_details_stud/drive/{{ app.drive.id }}">
+                                        <button type="button" class="btn btn-primary">View Details</button>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+            {% if drives %}
+            <h5>Available Jobs</h5>
+            {% for drive in drives %}
+            {% if drive.company.is_blacklisted==False %}
+            <p>{{ drive.job_title }} - {{ drive.company.name }}</p>
+            {% endif %}
+            {% endfor %}
+
+            <hr>
+            {% endif %}
+
+
+            <canvas id="studentChart"></canvas>
+
+            <script>
+                new Chart(document.getElementById("studentChart"), {
+                    type: 'pie',
+                    data: {
+                        labels: ["Shortlisted", "Rejected", "Waiting"],
+                        datasets: [{
+                            data: [{{ shortlist }}, {{ reject }}, {{ waiting }}]}] }});
+            </script>
+
+
+        </div>
+    </div>
+
+</body>
+
+</html>

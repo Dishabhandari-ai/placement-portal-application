@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="main">
+        <div id="canvas">
+            <div class="container-fluid bg-light p-3 d-flex justify-content-between align-items-center">
+                <a class="navbar-brand fw-bold" href="#">Welcome {{student.name}}!</a>
+                <a href="/student/{{ student.id }}">
+                    <p>Dashboard</p>
+                </a>|<a href="/student_app_history/student/{{ student.id }}">
+                    <p>History</p>
+                </a>|<a href="/logout">
+                    <p>Logout</p>
+                </a>
+            </div>
+
+            <hr>
+            <p style="color:red;">{{ error }}</p>
+            <form method="POST" action="/edit_profile/student/{{ student.id }}" class="p-4 shadow rounded bg-light">
+
+                   
+
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" value="{{student.name}}"
+                            required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="department" class="form-label">Department</label>
+                        <input type="text" class="form-control" id="department" name="department"
+                            placeholder="Enter department" value="{{student.department}}" required>
+                    </div>
+                    
+                    
+                   
+
+                    <div class="mb-3">
+                        <label for="resume_link" class="form-label">Resume Link</label>
+                        <input type="text" class="form-control" id="resume_link" name="resume_link" placeholder="Enter resume link" value="{{student.resume_link}}"
+                            required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password"
+                            placeholder="Enter password" value="{{student.password}}" required>
+                    </div>
+
+                    
+                   
+
+                    
+                  
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary w-100">
+                            Save Changes
+                        </button>
+                    </div>
+
+                </form>
+
+
+       
+            
+
+        </div>
+    </div>
+
+</body>
+
+</html>
